@@ -9,3 +9,4 @@
 - [markdownpad注册方法](https://github.com/llj2kh/studynote/wiki/markdownpad注册方法)
 - [mysql配置](https://github.com/llj2kh/studynote/wiki/mysql配置)
 - [rsync设置](https://github.com/llj2kh/studynote/wiki/rsync设置)
+- [shell编程](https://github.com/llj2kh/studynote/wiki/shell编程)
