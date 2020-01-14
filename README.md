@@ -2,6 +2,7 @@
 - [001_ssh信任连接建立](https://github.com/llj2kh/studynote/wiki/001_ssh信任连接建立)
 - [002_树莓派使用记录](https://github.com/llj2kh/studynote/wiki/002_树莓派使用记录)
 - [设置服务时，注意防火墙](https://github.com/llj2kh/studynote/wiki/设置服务时，注意防火墙)
+- [树莓派使用记录](https://github.com/llj2kh/studynote/wiki/树莓派使用记录)
 - [虚拟机设置](https://github.com/llj2kh/studynote/wiki/虚拟机设置)
 - [bash操作技巧](https://github.com/llj2kh/studynote/wiki/bash操作技巧)
 - [Eclipse开发环境设置](https://github.com/llj2kh/studynote/wiki/Eclipse开发环境设置)
