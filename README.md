@@ -1,5 +1,5 @@
 # 我的学习笔记
-#### 共有  **12**  篇笔记。
+#### 共有  **13**  篇笔记。
 - [001_ssh信任连接建立](https://github.com/llj2kh/studynote/wiki/001_ssh信任连接建立)
 - [002_bash操作技巧](https://github.com/llj2kh/studynote/wiki/002_bash操作技巧)
 - [003_设置服务时，注意防火墙](https://github.com/llj2kh/studynote/wiki/003_设置服务时，注意防火墙)
@@ -12,3 +12,4 @@
 - [010_shell编程](https://github.com/llj2kh/studynote/wiki/010_shell编程)
 - [011_shell命令](https://github.com/llj2kh/studynote/wiki/011_shell命令)
 - [012_vmware设置](https://github.com/llj2kh/studynote/wiki/012_vmware设置)
+- [013_清空历史commit](https://github.com/llj2kh/studynote/wiki/013_清空历史commit)
