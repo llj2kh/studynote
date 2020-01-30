@@ -33,10 +33,12 @@ else
 	cd $da
 fi
 
-let bb=$RANDOM%23+1
-
-#curl https://cl.nvgm.icu/thread0806.php?fid=16 >/tmp/xxx1
+if [ -n $1 ] -a [ $1 == "d" ];then
+curl https://cl.nvgm.icu/thread0806.php?fid=16 >/tmp/xxx1
+else
 curl https://cl.nvgm.icu/thread0806.php?fid=8 >/tmp/xxx1
+fi
+
 tou="https:\/\/cl.nvgm.icu\/"
 mulu="htm_data/2001"
 egrep -o "<a href[^>]+>" /tmp/xxx1 | egrep -o "$mulu.*.html" |sort | uniq >/tmp/xxx2
@@ -59,6 +61,7 @@ while read line;do
 grep "$line" /samba/llj/xxx
 if [ $? -ne 0 ];then
 echo $line >>/samba/llj/xxx
+let bb=$RANDOM%23+1
 wget -t1 -T1 --user-agent="${agent[$bb]}" $line
 fi
 done < /tmp/xx5
