@@ -33,7 +33,7 @@ else
 	cd $da
 fi
 
-if [ -n $1 ] -a [ $1 == "d" ];then
+if [[ -n $1 && $1 = 'd' ]];then
 curl https://cl.nvgm.icu/thread0806.php?fid=16 >/tmp/xxx1
 else
 curl https://cl.nvgm.icu/thread0806.php?fid=8 >/tmp/xxx1
