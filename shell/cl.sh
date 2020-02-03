@@ -34,10 +34,8 @@ mulu="htm_data/$mda"
 let oldmda=mda-1
 
 [ ! -f /samba/llj/htm$mda ] && touch /samba/llj/htm$mda
-[ ! -f /samba/llj/jpg$mda ] && touch /samba/llj/jpg$mda
 
 [ -f /samba/llj/htm$oldmda ] && rm /samba/llj/htm$oldmda
-[ -f /samba/llj/jpg$oldmda ] && rm /samba/llj/jpg$oldmda
 
 
 # 根据命令获取首页及设置目录
@@ -78,12 +76,8 @@ sed -i '/?/d' /tmp/xx5
 
 # 读取图片网址并下载
 while read line;do
-grep "$line" /samba/llj/jpg$mda
-if [ $? -ne 0 ];then
-echo $line >>/samba/llj/jpg$mda
 let bb=$RANDOM%23+1
 wget -t1 -T1 --user-agent="${agent[$bb]}" $line
-fi
 done < /tmp/xx5
 
 done < /tmp/xxx2
