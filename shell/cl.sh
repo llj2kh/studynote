@@ -1,4 +1,6 @@
 #! /bin/bash
+
+# wget 的 user_agent 
 agent[1]="Mozilla/5.0 (Windows; U; Windows NT 5.2) Gecko/2008070208 Firefox/3.0.1"
 agent[2]="Mozilla/5.0 (Windows; U; Windows NT 6.1; en-us) AppleWebKit/534.50 (KHTML, like Gecko) Version/5.1 Safari/534.5"
 agent[3]="Mozilla/5.0 (Macintosh; Intel Mac OS X 10.6; rv:2.0.1) Gecko/20100101 Firefox/4.0.1"
@@ -23,8 +25,29 @@ agent[21]="Mozilla/5.0 (Windows; U; Windows NT 5.2) Gecko/2008070208 Firefox/3.0
 agent[22]="Mozilla/5.0 (Windows; U; Windows NT 5.1) Gecko/20070309 Firefox/2.0.0.3"
 agent[23]="Mozilla/5.0 (Windows; U; Windows NT 5.1) Gecko/20070803 Firefox/1.5.0.12"
 
+# 设置相关变量及创建保存图片网址的文件,用于后面的比对，避免重复下载
 cd /samba/DLNA/Picture/cl
 da=`date "+%F"`
+tou="https:\/\/cl.nvgm.icu\/"
+mda=`date +%y%m`
+mulu="htm_data/$mda"
+let oldmda=mda-1
+
+[ ! -f /samba/llj/htm$mda ] && touch /samba/llj/htm$mda
+[ ! -f /samba/llj/jpg$mda ] && touch /samba/llj/jpg$mda
+
+[ -f /samba/llj/htm$oldmda ] && rm /samba/llj/htm$oldmda
+[ -f /samba/llj/jpg$oldmda ] && rm /samba/llj/jpg$oldmda
+
+
+# 根据命令获取首页及设置目录
+if [[ -n $1 && $1 = 'd' ]];then
+curl https://cl.nvgm.icu/thread0806.php?fid=16 >/tmp/xxx1
+da=$da$1
+else
+curl https://cl.nvgm.icu/thread0806.php?fid=8 >/tmp/xxx1
+fi
+
 if [ -d $da ];then
 	cd $da
 else
@@ -33,25 +56,12 @@ else
 	cd $da
 fi
 
-tou="https:\/\/cl.nvgm.icu\/"
-mda=`date +%y%m`
-mulu="htm_data/$mda"
-if [ ! -f /samba/llj/htm$mda ];then
-touch /samba/llj/htm$mda
-fi
-if [ ! -f /samba/llj/jpg$mda ];then
-touch /samba/llj/jpg$mda
-fi
-
-if [[ -n $1 && $1 = 'd' ]];then
-curl https://cl.nvgm.icu/thread0806.php?fid=16 >/tmp/xxx1
-else
-curl https://cl.nvgm.icu/thread0806.php?fid=8 >/tmp/xxx1
-fi
+# 获取每个帖子的网址
 egrep -o "<a href[^>]+>" /tmp/xxx1 | egrep -o "$mulu.*.html" |sort | uniq >/tmp/xxx2
 sed -i  "s/^/$tou/g"  /tmp/xxx2
 #cat /tmp/xxx2 | sed  "s/^/$tou/g" > /tmp/xxx3
 
+# 读取每个帖子的网址，并用 curl 获取页面
 while read line;do
 grep "$line" /samba/llj/htm$mda
 if [ $? -ne 0 ];then
@@ -61,9 +71,12 @@ else
 	continue
 fi
 
+# 从页面中获取图片网址
 egrep -o "<img[^>]+>" /tmp/xx4 | egrep -o "http[^(http)]*(.jpg|.JPG|.png|.PNG|.jpeg|.JPEG)" | sort | uniq >/tmp/xx5
 sed -i '/?/d' /tmp/xx5
 #cat /tmp/xx5 >> /samba/llj/xxx
+
+# 读取图片网址并下载
 while read line;do
 grep "$line" /samba/llj/jpg$mda
 if [ $? -ne 0 ];then
@@ -74,12 +87,11 @@ fi
 done < /tmp/xx5
 
 done < /tmp/xxx2
+
+
+
 sudo chmod 666 * 2>/dev/null
 du -h
 echo ok-----------------
 exit
 
-egrep -o "<img[^>]+>" xx | egrep -o "http.*(.jpg|.JPG)" >vv
-while read line;do
-wget $line
-done < vv
