@@ -26,6 +26,15 @@ agent[22]="Mozilla/5.0 (Windows; U; Windows NT 5.1) Gecko/20070309 Firefox/2.0.0
 agent[23]="Mozilla/5.0 (Windows; U; Windows NT 5.1) Gecko/20070803 Firefox/1.5.0.12"
 
 # 设置相关变量及创建保存图片网址的文件,用于后面的比对，避免重复下载
+
+df -h /samba | grep /samba  | awk '{print $5}' >/tmp/dfh
+read use </tmp/dfh
+use=${use:0:${#use}-1}
+if [ $use -gt 95 ];then
+	echo "磁盘空间不足，程序退出！" >/llj/log
+	exit 9
+fi
+
 cd /samba/DLNA/Picture/cl
 da=`date "+%F"`
 tou="https:\/\/cl.nvgm.icu\/"
@@ -64,6 +73,7 @@ while read line;do
 grep "$line" /samba/llj/htm$mda
 if [ $? -ne 0 ];then
 curl $line >/tmp/xx4
+[ $? -ne 0 ] && continue
 echo $line >>/samba/llj/htm$mda
 else
 	continue
@@ -85,7 +95,8 @@ done < /tmp/xxx2
 
 
 sudo chmod 666 * 2>/dev/null
-du -h
+du -h |tee /llj/log
+echo `ls | wc -l`" 个文件" | tee -a /llj/log
 echo ok-----------------
 exit
 
