@@ -6,13 +6,13 @@ WriteIt(){
 		sed -i "1i $line" $tmpf
 		case $UID in
 			1000)
-				echo "LLJ $flag了 $num 次。`date`" >>$tmpf
+				echo "LLJ $flag了 $num 次。`date "+%Y年 %m月 %d日  %H:%M:%S"`" >>$tmpf
 				;;
 			1001)
-				echo "LYK $flag了 $num 次。`date`" >>$tmpf
+				echo "LYK $flag了 $num 次。`date "+%Y年 %m月 %d日  %H:%M:%S"`" >>$tmpf
 				;;
 			*)
-				echo "$UID $flag了 $num 次。`date`" >>$tmpf
+				echo "$UID $flag了 $num 次。`date "+%Y年 %m月 %d日  %H:%M:%S"`" >>$tmpf
 				;;
 		esac
 		echo "现在还剩 $line 次。"
@@ -29,15 +29,15 @@ case $1 in
 		WriteIt
 		;;
 	+)
-		test -z $2 && let line=line+9 || let line=line+$2
-		test -z $2 && num=9 || num=$2
+		test -z $2 && let line=line+1 || let line=line+$2
+		test -z $2 && num=1 || num=$2
 		flag="增加"
 		WriteIt
 		;;
 	*)
 		echo "现在还剩 $line 次。"
 		echo
-		cat $tmpf
+		tail -6 $tmpf
 		;;
 esac
 base64 $tmpf >/llj/kk
