@@ -6,13 +6,13 @@ WriteIt(){
 		sed -i "1i $line" $tmpf
 		case $UID in
 			1000)
-				echo "LLJ $flag了 $num 次。`date "+%Y年 %m月 %d日  %H:%M:%S"`" >>$tmpf
+				echo -e "LLJ\t $flag了 $num 次。`date "+%Y年 %m月 %d日  %H:%M:%S"`" >>$tmpf
 				;;
 			1001)
-				echo "LYK $flag了 $num 次。`date "+%Y年 %m月 %d日  %H:%M:%S"`" >>$tmpf
+				echo -e "LYK\t $flag了 $num 次。`date "+%Y年 %m月 %d日  %H:%M:%S"`" >>$tmpf
 				;;
 			*)
-				echo "$UID $flag了 $num 次。`date "+%Y年 %m月 %d日  %H:%M:%S"`" >>$tmpf
+				echo -e "UID:$UID\t $flag了 $num 次。`date "+%Y年 %m月 %d日  %H:%M:%S"`" >>$tmpf
 				;;
 		esac
 		echo "现在还剩 $line 次。"
