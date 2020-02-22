@@ -51,6 +51,9 @@ let oldmda=mda-1
 if [[ -n $1 && $1 = 'd' ]];then
 curl https://cl.nvgm.icu/thread0806.php?fid=16 >/tmp/xxx1
 da=$da$1
+elif [[ -n $1 && $1 = 'j' ]];then
+curl https://cl.nvgm.icu/thread0806.php?fid=7 >/tmp/xxx1
+da=$da$1
 else
 curl https://cl.nvgm.icu/thread0806.php?fid=8 >/tmp/xxx1
 fi
