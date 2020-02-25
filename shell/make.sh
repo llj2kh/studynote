@@ -1,6 +1,7 @@
 #!/bin/bash
 # 用于自动生成 studynote.wiki git库的home页面。
 WEB="https://github.com/llj2kh/studynote/wiki/"
+cd /samba/studynote.wiki/
 ignore=`cat .gitignore`
 FILE=`ls | grep -v "$ignore
 Home.md
@@ -22,8 +23,8 @@ done
 COUNT=`cat _count.md`
 COUNT=`expr $COUNT + 1`
 echo $COUNT > _count.md
-git add Home.md
-git add _Sidebar.md
+#git add Home.md
+git add * 2>/dev/null
 #git commit -m "update `date "+%F"`"
 git commit -m "update $COUNT"
 git push
@@ -31,7 +32,6 @@ git push
 
 echo;echo
 cd ../studynote/
-cp ../studynote.wiki/Home.md ./README.md
 git add README.md
 git commit -m "update $COUNT"
 git push
