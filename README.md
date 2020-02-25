@@ -1,5 +1,5 @@
 # 我的学习笔记
-#### 共有   15   篇笔记。
+#### 共有   17   篇笔记。
 - [ssh信任连接建立](https://github.com/llj2kh/studynote/wiki/001_ssh信任连接建立)
 - [bash操作技巧](https://github.com/llj2kh/studynote/wiki/002_bash操作技巧)
 - [设置服务时，注意防火墙](https://github.com/llj2kh/studynote/wiki/003_设置服务时，注意防火墙)
@@ -14,4 +14,6 @@
 - [vmware设置](https://github.com/llj2kh/studynote/wiki/012_vmware设置)
 - [清空历史commit](https://github.com/llj2kh/studynote/wiki/013_清空历史commit)
 - [json学习](https://github.com/llj2kh/studynote/wiki/014_json学习)
+- [vtworay安装](https://github.com/llj2kh/studynote/wiki/015_vtworay安装)
+- [google-cloud申请及设置](https://github.com/llj2kh/studynote/wiki/016-google-cloud申请及设置)
 - [生活](https://github.com/llj2kh/studynote/wiki/a01_生活)
