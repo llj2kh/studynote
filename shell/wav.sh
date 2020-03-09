@@ -6,7 +6,10 @@ stop(){
 	if [ -n "$pid" ];then
 		kill -9 $pid
 	fi
+
+	exit 0
 }
+
 
 start(){
 path=/samba/DLNA/Music/wav/
@@ -14,7 +17,7 @@ count=0
 while true;do
 	if [ $count -eq 0 ];then
 		ls $path >/tmp/ww
-		[ -n $mu ] && sed -i "/${mu}/d" /tmp/ww
+		[ -n "$mu" ] && sed -i "/${mu}/d" /tmp/ww
 		count=`cat /tmp/ww |wc -l `
 	fi
 	let num=$RANDOM%$count+1
@@ -27,20 +30,19 @@ while true;do
 	let count-=1
 	sed -i "${num}d" /tmp/ww
 done
+exit 0
 }
 
 
 
 case $1 in
 	start)
-		stop
 		start
 		;;
 	stop)
 		stop
 		;;
 	*)
-		stop
 		start
 		;;
 esac
