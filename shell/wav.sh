@@ -13,24 +13,32 @@ stop(){
 
 start(){
 path=/samba/DLNA/Music/wav/
-count=0
+ls $path >/tmp/ww
+count=`cat /tmp/ww |wc -l `
+sum=$count
 while true;do
-	if [ $count -eq 0 ];then
-		ls $path >/tmp/ww
-		[ -n "$mu" ] && sed -i "/${mu}/d" /tmp/ww
-		count=`cat /tmp/ww |wc -l `
+	if [ $count -ne 0 ];then
+		let num=$RANDOM%$count+1
+		mu=`sed -n "${num}p" /tmp/ww`
+		list[$count]=$mu
+		aplay -D bluealsa:DEV=88:00:00:00:03:E5,PROFILE=A2DP "$path$mu"
+#			echo "Playing the $path$mu song"
+		if [ $? -ne 0 ]; then
+			exit 3
+		fi
+		let count-=1
+		sed -i "${num}d" /tmp/ww
+	else
+		for ((i=$sum;i>0;i--)){
+			aplay -D bluealsa:DEV=88:00:00:00:03:E5,PROFILE=A2DP "${list[$i]}"
+#			echo " for playing $path${list[$i]}"
+			if [ $? -ne 0 ]; then
+					exit 3
+			fi
+		}
 	fi
-	let num=$RANDOM%$count+1
-	mu=`sed -n "${num}p" /tmp/ww`
-	aplay -D bluealsa:DEV=88:00:00:00:03:E5,PROFILE=A2DP $path$mu
-#	echo "Playing the $mu song"
-	if [ $? -ne 0 ]; then
-		exit 3
-	fi
-	let count-=1
-	sed -i "${num}d" /tmp/ww
+			
 done
-exit 0
 }
 
 
@@ -43,7 +51,8 @@ case $1 in
 		stop
 		;;
 	*)
-		start
+		echo "请输入参数 start|stop !"
+		exit 4
 		;;
 esac
 
