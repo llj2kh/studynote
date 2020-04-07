@@ -1,5 +1,5 @@
 # 我的学习笔记
-#### 共有   21   篇笔记。
+#### 共有   23   篇笔记。
 - [ssh信任连接建立](https://github.com/llj2kh/studynote/wiki/001_ssh信任连接建立)
 - [bash操作技巧](https://github.com/llj2kh/studynote/wiki/002_bash操作技巧)
 - [设置服务时，注意防火墙](https://github.com/llj2kh/studynote/wiki/003_设置服务时，注意防火墙)
@@ -20,4 +20,6 @@
 - [frp应用](https://github.com/llj2kh/studynote/wiki/018-frp应用)
 - [通过蓝牙音箱播放音乐](https://github.com/llj2kh/studynote/wiki/019-通过蓝牙音箱播放音乐)
 - [硬盘分区](https://github.com/llj2kh/studynote/wiki/020-硬盘分区)
+- [树莓派安装v2ray、透明代理、软路由](https://github.com/llj2kh/studynote/wiki/021-树莓派安装v2ray、透明代理、软路由)
+- [手机资料rsync到电脑](https://github.com/llj2kh/studynote/wiki/022-手机资料rsync到电脑)
 - [生活](https://github.com/llj2kh/studynote/wiki/a01_生活)
